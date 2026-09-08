@@ -30,7 +30,7 @@ else
   if [ -n "${SFDX_AUTH_URL:-}" ]; then
     echo "$SFDX_AUTH_URL" | sf org login sfdx-url --sfdx-url-stdin --alias "$ALIAS" --set-default >/dev/null 2>&1 || true
   fi
-  creds=$(sf org display --target-org "$ALIAS" --json 2>/dev/null | python3 -c '
+  creds=$( (sf org display --target-org "$ALIAS" --json 2>/dev/null || true) | python3 -c '
 import json,sys
 try:
     r=json.load(sys.stdin)["result"]; print(r["instanceUrl"]+" "+r["accessToken"])
