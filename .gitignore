@@ -4,3 +4,7 @@
 *.pub
 rsa_key*
 .env
+
+# Local virtualenvs
+.venv/
+scripts/snowflake/.venv/
