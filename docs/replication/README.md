@@ -47,6 +47,12 @@ Tables and how they map:
 
 Build this once, as your admin user. It mirrors what Bikramaditya described.
 
+Most of these steps can be driven from Claude Code through Salesforce's Data 360
+MCP server (see `scripts/README.md`, section "Data 360 MCP server"). It exposes
+connections, data streams, DLO/DMO mappings, identity resolution, calculated
+insights, data spaces, and query. The click paths below still apply if you
+prefer the browser or the API refuses a step.
+
 1. **Connector.** Data Cloud Setup, Connectors, New, Snowflake. Account URL, user `DATACLOUD_SVC`, private key from `rsa_key.p8`, role `DATACLOUD_READER`, warehouse `SIERRA_WH`. Test the connection. If Snowflake is not in the connector list, the DE org does not license it. Fall back to uploading the same tables as CSV; Scenarios A through D still work, only E needs Snowflake.
 2. **Data streams.** One per table, database `SIERRA_REPLICA`, schema `CRM`. Set category and primary key from the table above. For Engagement streams, set the event time field. Leave refresh on the default schedule. Run each stream once.
 3. **DLO to DMO mapping.**
