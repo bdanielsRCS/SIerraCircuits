@@ -14,6 +14,26 @@ settings (Sierra Circuts environment) or export them in your shell.
 | `SNOWFLAKE_ROLE` | `snowflake/*` | Defaults to `ACCOUNTADMIN` |
 | `SNOWFLAKE_SVC_PUBLIC_KEY_PATH` | `snowflake/run_sql.py` | Path to `rsa_key.pub` for the DATACLOUD_SVC user. Substituted into `00_setup.sql`. |
 
+## Data 360 MCP server
+
+Salesforce's own [d360-mcp-server](https://github.com/forcedotcom/d360-mcp-server)
+exposes about 200 Data 360 operations (data streams, DLO/DMO mappings, identity
+resolution, calculated insights, data spaces, connections, query) through three
+MCP tools: `search`, `payload_examples`, `execute`. `.mcp.json` at the repo root
+registers it with Claude Code, launched through `scripts/mcp/d360.sh`.
+
+```
+scripts/mcp/build-d360.sh    # clone + build into .tools/ (needs Java 17+, Maven 3.9+), once per container
+```
+
+The launcher picks credentials in this order, so set whichever you have:
+
+| Variables | Flow |
+|-----------|------|
+| `DATA360_CLIENT_ID`, `DATA360_CLIENT_SECRET` | External Client App, client credentials. Auto-refreshing. Preferred for anything longer than a session. Setup: EXTERNAL_CLIENT_APP_SETUP.md in that repo. |
+| `DATA360_ACCESS_TOKEN`, `DATA360_INSTANCE_URL` | A raw session token. Expires in about 2 hours. |
+| `SFDX_AUTH_URL` | The launcher logs the sf CLI in and mints a token from it. Simplest if you already set this for the Salesforce scripts. |
+
 ## Salesforce
 
 Run in order from the repo root.

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "data360": {
+      "command": "bash",
+      "args": ["scripts/mcp/d360.sh"]
+    }
+  }
+}

@@ -8,3 +8,6 @@ rsa_key*
 # Local virtualenvs
 .venv/
 scripts/snowflake/.venv/
+
+# Built tools (Data 360 MCP server clone and jar)
+.tools/
