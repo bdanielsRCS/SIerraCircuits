@@ -36,8 +36,10 @@ Zero Copy columns that fail to refresh after source schema changes.
 
 - Domain: `orgfarm-7d4f0c62ef-dev-ed.develop.my.salesforce.com`
 - sf CLI alias expected: `devorg`. Override with `SF_ALIAS` if yours differs.
-- Not yet confirmed: whether Data Cloud is provisioned, whether an External
-  Client App exists. `scripts/sf/02-check-org.sh` answers the first.
+- Data Cloud is provisioned. Confirmed 2026-09-08 via `scripts/sf/02-check-org.sh`.
+- Not yet confirmed: whether an External Client App exists for the
+  client-credentials flow. Until it does, the MCP launcher mints tokens from
+  the CLI login.
 
 ## Working locally
 
