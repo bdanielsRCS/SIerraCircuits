@@ -5,6 +5,64 @@ The questions below are organized by the sections a health-check one-pager
 normally carries. Strike anything the document already answers and push on
 anything it leaves vague.
 
+## 0. Context from the Gmail thread (Bikram / Lewis)
+
+- Bikram reported a Data Graph access issue blocking Agentforce setup; key CRM
+  objects are inaccessible from the graph.
+- Lewis asked for user access to diagnose directly. Call set for next Tuesday
+  8 AM CST; Lewis may miss it, Bryant attends.
+- Data 360 (Data Cloud) status per Bikram: DLO/DMO mapping and unification done,
+  Data Graph config fix and validation still pending. He is asking for guidance.
+
+### Lead with these: Data Graph / Agentforce blocker
+
+- Which CRM objects are "inaccessible"? Account, Contact, Case, Opportunity,
+  custom objects? Are they inaccessible in the Data Graph builder, in the DMO
+  list, or only when the agent tries to retrieve them?
+- Which Data Space is the Data Graph in? Do the Agentforce user, the Einstein
+  integration user, and Bikram's user all have that Data Space assigned in their
+  Data Cloud permission set?
+- Were the missing objects ever ingested? Is there a Salesforce CRM connector
+  data stream for each one, and does the connector's integration user have read
+  access to the object and the fields being mapped?
+- Are the objects mapped to DMOs with a primary key and a relationship path back
+  to the graph's primary DMO? Data Graph only follows defined DMO relationships.
+- Is this a Unified Individual graph or a straight CRM-profile graph? If unified,
+  has the identity resolution ruleset run to completion and produced Unified
+  Individual and Unified Link records?
+- What is the Data Graph status right now: Active, Processing, or Failed? When
+  did it last refresh, and what did the error say?
+- Are any Data Graph limits in play: number of graphs per org, related-object
+  depth, number of fields, or record volume?
+- What is Agentforce meant to do with the graph: prompt grounding, an
+  Agentforce Data Library, a retriever on a search index, or an Apex/flow action?
+  Each needs different permissions and a different graph shape.
+- Has Einstein Generative AI and Agentforce been enabled on the org, and is the
+  Data Cloud provisioning tied to the same org, not a separate Data Cloud tenant?
+- Is the org production or a sandbox? Data Cloud sandboxes have their own
+  provisioning and can lag on features.
+- What has Bikram already tried, and what does he want from us: a fix, a
+  validation of his config, or a design decision?
+
+### Access and logistics
+
+- Confirm Lewis's user-access request is approved and provisioned before the
+  Tuesday call. Who is creating the user, and with which permission sets:
+  Data Cloud Admin, Data Cloud Data Space, Agentforce/Einstein user?
+- Do we get a full-copy sandbox or production? If production, agree on
+  change-control rules for anything we touch during diagnosis.
+- Get a copy of the current DLO-to-DMO mapping and the identity resolution
+  ruleset before Tuesday so the call is spent diagnosing, not discovering.
+
+### Health-check scope implications
+
+- Is the health check scoped to Data 360 and Agentforce only, or the whole CRM
+  org? The one-pager should say.
+- Is "restart" a restart of the Agentforce build, or of the wider Salesforce
+  program? That determines who needs to be interviewed.
+- Who owns Data 360 on the client side day to day, and is Bikram that person or
+  a partner or Salesforce resource?
+
 ## 1. Why now (the "restart")
 
 - What is being restarted? A stalled implementation, a prior partner's work, or a
