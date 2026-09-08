@@ -37,6 +37,8 @@ Zero Copy columns that fail to refresh after source schema changes.
 - Domain: `orgfarm-7d4f0c62ef-dev-ed.develop.my.salesforce.com`
 - sf CLI alias expected: `devorg`. Override with `SF_ALIAS` if yours differs.
 - Data Cloud is provisioned. Confirmed 2026-09-08 via `scripts/sf/02-check-org.sh`.
+- Snowflake connector is available under Data Cloud Setup, Connectors. Confirmed
+  2026-09-08. All five replication scenarios are possible, including Scenario E.
 - Not yet confirmed: whether an External Client App exists for the
   client-credentials flow. Until it does, the MCP launcher mints tokens from
   the CLI login.
