@@ -1,0 +1,6 @@
+# Never commit keys or credentials
+*.p8
+*.pem
+*.pub
+rsa_key*
+.env
